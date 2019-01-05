@@ -214,6 +214,7 @@
 			    </div>
 			</div>
 			<!-- 弹窗 -->
+		<div class="chuang" id="chuang"></div>
 			<div class="tan" id="tan">
 				<div class="kuang" id="kuang">
 					<p id="x">X</p>
@@ -427,25 +428,27 @@
 
 
 		
-		var all=document.getElementById("all");
+		
 		var tan=document.getElementById("tan");
 		var car =document.getElementById("car");
-		var kuang=document.getElementById("kuang");
 		var x=document.getElementById("x");
 		var con=document.getElementById("con");
-		// all.style.width=window.outerWidth+"px";
+		var chuang=document.getElementById("chuang");
 
 		car.onclick=function(){
 			tan.style.display="block";
+			chuang.style.display="block";
 		}
 		x.onclick=function(){
 			tan.style.display="none";
+			chuang.style.display="none";
 		}
 		x.onmouseover=function(){
 			x.style.cursor="pointer";
 		}
 		con.onclick=function(){
 			tan.style.display="none";
+			chuang.style.display="none";
 		}
 	</script>
 </body>
