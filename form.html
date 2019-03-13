@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>表单</title>
+    <meta charset="utf-8">
+    <style>
+        legend {
+            color: red;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="testform" method="get" action="">
+        <header>
+            <h1>毕业生信息</h1>
+        </header>
+        <!-- 和其他元素区分的边框 -->
+        <fieldset>
+            <legend>
+                学生信息
+            </legend>
+            姓 名<input type="text" name="name" autofocus required placeholder="请输入姓名" /> <span>*</span>
+            <br />
+            学 号<input type="number" name="sno" required placeholder="请输入学号" /> <span>*</span>
+            <br />
+            手 机<input type="tel" name="tel" required placeholder="请输入手机号" /> <span>*</span>
+            <br />
+            邮 箱<input type="email" name="email" required placeholder="请输入邮箱地址" /> <span>*</span>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>
+                录取情况
+            </legend>
+            录取学校<input type="search" name="school" list="school">
+            <datalist id="school">
+                <option>清华大学</option>
+                <option>北京大学</option>
+                <option>河北师范大学</option>
+            </datalist>
+
+            <br>
+            入学成绩<input type="text" name="score">
+            <br>
+            入学时间<input type="date" name="time">
+        </fieldset>
+        <br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+
+</html>
