@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>web存储</title>
+    <meta charset="utf-8">
+    <style>
+        button {
+            border: 0px;
+            background-color: transparent;
+            margin: 10px 20px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 200px;
+            height: 40px;
+        }
+
+        .div {
+            width: 500px;
+            height: 100px;
+            float: left;
+        }
+
+        .x {
+            width: 25px;
+            height: 25px;
+            margin-top: 75px;
+            text-align: center;
+            float: left;
+            background-color: rgb(228, 226, 226);
+        }
+    </style>
+</head>
+
+<body>
+    <input type="search" name="search" id="search" autofocus placeholder="请输入想查找的商品" required />
+    <input type="submit" value="搜索" id="submit" onclick="saveStorage('search');" />
+    <br />
+    <p>最近搜索</p>
+    <div class="div" id="msg"></div>
+    <div class="x" id="clear">X</div>
+</body>
+<script>
+    window.onload = function () {
+        for (var i = 0; i < localStorage.length; i++) {
+            var result = document.createElement("button");
+            result.style.backgroundColor = "#cac8c8";
+            var key = localStorage.key(i);
+            var data = localStorage.getItem(key);
+            result.innerHTML += data;
+            document.getElementById("msg").appendChild(result);
+        }
+    }
+    var obj = document.getElementById("msg");
+    var clear = document.getElementById("clear");
+
+    function saveStorage(id) {
+        var data = document.getElementById(id).value;
+        var time = new Date().getTime();
+        localStorage.setItem(time, data);
+        var result = document.createElement("button");
+        result.style.backgroundColor = "#cac8c8";
+        result.innerHTML = data;
+        obj.appendChild(result);
+    }
+
+    clear.onclick = function () {
+        localStorage.clear();
+        alert("全部数据被清除");
+        msg.innerHTML = " ";
+    }
+    clear.onmouseover = function () {
+        clear.style.cursor = "pointer";
+    }
+</script>
+
+</html>
