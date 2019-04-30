@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="400px" height="250px"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById("cvs");
+    var context = canvas.getContext("2d");
+
+    context.fillStyle = '#ddd';
+    context.fillRect(0, 0, 400, 250);
+    canvas.style.background = 'url("img/白熊.gif") no-repeat center';
+
+
+    canvas.addEventListener('mousedown', mouseDown, false);
+    canvas.addEventListener('mousemove', mouseMove, false);
+    canvas.addEventListener('mouseup', mouseUp, false);
+
+    //draw 为false时，不可以画圆,为true可以画圆
+    var draw;
+
+    //调用mouseDown
+    function mouseDown(e) {
+        draw = true;
+    }
+    // 调用mouseMove
+    function mouseMove(e) {
+        if (draw) {
+            var x = e.layerX;
+            var y = e.layerY;
+            context.globalCompositeOperation = "destination-out";
+            // 开始画圆
+            context.beginPath();
+            context.arc(x, y, 50, 0, Math.PI * 2);
+            context.closePath();
+            context.fill();
+
+        }
+    }
+    function mouseUp(e) {
+        draw = false;
+        // 获取图片像素信息
+        var data = context.getImageData(0, 0, width, height).data;
+        var length = data.length;
+        var k = 0;
+
+        // 如果一个像素是透明的（值都是0），k就+1
+        for (var i = 0; i < length - 3; i += 4) {
+            if (data[i] == 0 && data[i + 1] == 0 && data[i + 2] == 0 && data[i + 3] == 0) {
+                k++;
+            }
+        }
+
+        // 有85%的面积是透明的时，就把整个canvas的背景显示出来
+        if (k > width * height * 0.85) {
+            context.fillStyle = "blue";
+            context.fillRect(0, 0, width, height);
+        }
+    }
+</script>
+</html>
